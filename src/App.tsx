@@ -6,22 +6,20 @@ const App: React.FC = () => {
 
     useEffect(() => {
         tg.ready();
-        console.log(tg.initDataUnsafe?.user?.first_name);
-    }, []);
+    }, [tg]);
 
     const onClose = () => {
+        tg.sendData(JSON.stringify({cmd: 'close', user: tg.initDataUnsafe?.user?.first_name}));
         tg.close();
     }
 
     return (
-        <>
-            <div className="App">
-                <header className="App-header">
-                    <h1>Telegram Web App</h1>
-                    <button onClick={onClose}>Close</button>
-                </header>
-            </div>
-        </>
+        <div className="App">
+            <header className="App-header">
+                <h1>Telegram Web App</h1>
+                <button onClick={onClose}>Close</button>
+            </header>
+        </div>
     )
 }
 
