@@ -17,6 +17,7 @@ const App: React.FC = () => {
         <div className="App">
             <header className="App-header">
                 <h1>Telegram Web App</h1>
+                <p>hello {tg.initDataUnsafe?.user?.first_name}</p>
                 <button onClick={onClose}>Close</button>
             </header>
         </div>
