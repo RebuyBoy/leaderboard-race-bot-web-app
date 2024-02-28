@@ -22,7 +22,7 @@ const App: React.FC = () => {
         <div className="App">
             <header className="App-header">
                 <h1>Telegram Web App</h1>
-                <h2>start param {window.Telegram.WebApp.initDataUnsafe.start_param}</h2>
+                <h2>start param {tg.initDataUnsafe?.start_param || 'Error: start_param not found'}</h2>
                 <p>hello {tg.initDataUnsafe?.user?.first_name}</p>
                 <Select data={gameTypes} value={gameType} onChange={setGameType}/>
                 <Select data={stakes} value={stake} onChange={setStake}/>
