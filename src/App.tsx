@@ -8,7 +8,6 @@ const App: React.FC = () => {
     const [stake, setStake] = useState<string | null>('');
     const gameTypes = ['game1', 'game2', 'game3'];
     const stakes = ['stake1', 'stake2', 'stake3'];
-    const startParam = window.Telegram.WebApp.initDataUnsafe.start_param
 
     useEffect(() => {
         tg.ready();
@@ -23,7 +22,7 @@ const App: React.FC = () => {
         <div className="App">
             <header className="App-header">
                 <h1>Telegram Web App</h1>
-                <h2>start param {startParam}</h2>
+                <h2>start param {window.Telegram.WebApp.initDataUnsafe.start_param}</h2>
                 <p>hello {tg.initDataUnsafe?.user?.first_name}</p>
                 <Select data={gameTypes} value={gameType} onChange={setGameType}/>
                 <Select data={stakes} value={stake} onChange={setStake}/>
