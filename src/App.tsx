@@ -1,14 +1,14 @@
 import './App.css'
 import React, {useEffect, useState} from "react";
-import {Select, TextInput} from "@mantine/core";
+import {Button, Center, Text, Flex, Select, TextInput} from "@mantine/core";
 
 const App: React.FC = () => {
     const tg = window.Telegram.WebApp;
-    const [gameType, setGameType] = useState<string | null>('gggg');
-    const [stake, setStake] = useState<string | null>('ssss');
-    const [nickname, setNickname] = useState<string | null>('nnnn');
-    const gameTypes = ['SIT_GO_AOF', 'HOLDEM_9MAX', 'BATTLE_ROYALE'];
-    const stakes = ['S_100', 'S_200', 'S_300'];
+    const [gameType, setGameType] = useState<string | null>('OMAHA_AOF');
+    const [stake, setStake] = useState<string | null>('');
+    const [nickname, setNickname] = useState<string | null>('');
+    const gameTypes = ['OMAHA_AOF'];
+    const stakes = ['OMAOF_1000', 'OMAOF_500', 'OMAOF_200', 'OMAOF_100', 'OMAOF_40', 'OMAOF_20'];
 
     useEffect(() => {
         tg.ready();
@@ -30,20 +30,28 @@ const App: React.FC = () => {
         console.log("closed");
     }
 
+    const isDisabledButton: boolean = !gameType || !stake || !nickname
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <h1>Telegram Web App</h1>
-                <h2>start param {tg.initDataUnsafe?.start_param || 'Error: start_param not found'}</h2>
-                <h2>start param {tg.initData || 'Error: initData not found'}</h2>
-                <p>hello: {tg.initDataUnsafe?.user?.first_name}</p>
-                <p>query id: {tg.initDataUnsafe?.query_id}</p>
-                <Select data={gameTypes} value={gameType} onChange={setGameType}/>
-                <Select data={stakes} value={stake} onChange={setStake}/>
-                <TextInput onInput={() => setNickname} placeholder="Your nickname"/>
-                <button onClick={onClose}>Subscribe</button>
-            </header>
-        </div>
+        <Center w={'100%'}>
+
+            <Flex direction={'column'} gap={7} maw={300} justify={'space-around'} align={'center'}>
+
+                <Text size="xl"
+                      fw={900}
+                      variant="gradient"
+                      gradient={{from: 'blue', to: 'cyan', deg: 90}}>
+                    hello {tg.initDataUnsafe?.user?.first_name}
+                </Text>
+                <Select placeholder={"select game type"} data={gameTypes} value={gameType} onChange={setGameType}
+                        required/>
+                <Select placeholder={"select stake"} data={stakes} value={stake} onChange={setStake} required/>
+                <TextInput w={'100%'} onInput={(event) => setNickname(event.currentTarget.value)}
+                           placeholder="Your nickname"
+                           required={true}/>
+                <Button onClick={onClose} disabled={isDisabledButton}>Subscribe</Button>
+            </Flex>
+        </Center>
     )
 }
 
