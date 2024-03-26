@@ -24,11 +24,10 @@ const App: React.FC = () => {
                 "gameType": gameType,
                 "stake": stake,
                 "nickname": nickname,
-                "chatId": tg.initDataUnsafe?.chat?.id
+                "queryId": tg.initDataUnsafe?.query_id
             }),
         });
         tg.close();
-        console.log("closed");
     }
 
     const isDisabledButton: boolean = !gameType || !stake || !nickname
