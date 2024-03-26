@@ -14,8 +14,21 @@ const App: React.FC = () => {
     });
 
     const onClose = () => {
-        tg.sendData(JSON.stringify({cmd: 'close', user: tg.initDataUnsafe?.user?.first_name}));
+        sendDataToBot();
         tg.close();
+    }
+
+    const sendDataToBot = () => {
+        fetch('https://af7b-37-28-156-238.ngrok-free.app/webapp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                gameType,
+                stake
+            }),
+        })
     }
 
     return (
