@@ -24,7 +24,7 @@ const App: React.FC = () => {
                 "gameType": gameType,
                 "stake": stake,
                 "nickname": nickname,
-                "chat_id": tg.initDataUnsafe?.chat?.id
+                "chatId": tg.initDataUnsafe?.chat?.id
             }),
         });
         tg.close();
