@@ -4,8 +4,8 @@ import {Select, TextInput} from "@mantine/core";
 
 const App: React.FC = () => {
     const tg = window.Telegram.WebApp;
-    const [gameType, setGameType] = useState<string | null>('');
-    const [stake, setStake] = useState<string | null>('');
+    const [gameType, setGameType] = useState<string | null>('gggg');
+    const [stake, setStake] = useState<string | null>('ssss');
     const gameTypes = ['game1', 'game2', 'game3'];
     const stakes = ['stake1', 'stake2', 'stake3'];
 
@@ -13,13 +13,8 @@ const App: React.FC = () => {
         tg.ready();
     });
 
-    const onClose = () => {
-        sendDataToBot();
-        tg.close();
-    }
-
-    const sendDataToBot = () => {
-        fetch('https://af7b-37-28-156-238.ngrok-free.app/webapp', {
+    const onClose = async () => {
+        await fetch('https://af7b-37-28-156-238.ngrok-free.app/webapp', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +23,9 @@ const App: React.FC = () => {
                 gameType,
                 stake
             }),
-        })
+        });
+        tg.close();
+        console.log("closed");
     }
 
     return (
