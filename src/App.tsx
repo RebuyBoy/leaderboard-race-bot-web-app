@@ -15,7 +15,7 @@ const App: React.FC = () => {
     });
 
     const onClose = async () => {
-        await fetch('https://af7b-37-28-156-238.ngrok-free.app/webapp', {
+        await fetch('https://2ff1-212-102-35-215.ngrok-free.app', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
